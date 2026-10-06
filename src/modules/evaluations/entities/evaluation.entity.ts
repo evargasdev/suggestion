@@ -7,7 +7,7 @@ import { QuestionAnswer } from '../../question-answers/entities/question-answer.
 export class Evaluation extends Base {
   @Column({
     name: 'date',
-    type: 'datetime',
+    type: 'timestamptz',
     nullable: false,
     default: () => 'CURRENT_TIMESTAMP',
   })
@@ -19,13 +19,13 @@ export class Evaluation extends Base {
 
   @OneToMany(
     () => EvaluationResult,
-    (evaluation_results) => evaluation_results.evaluation,
+    (evaluationResult) => evaluationResult.evaluation,
   )
-  evaluation_results: EvaluationResult[];
+  evaluationResults: EvaluationResult[];
 
   @OneToMany(
     () => QuestionAnswer,
-    (question_answers) => question_answers.evaluation,
+    (questionAnswer) => questionAnswer.evaluation,
   )
-  question_answers: QuestionAnswer[];
+  questionAnswers: QuestionAnswer[];
 }

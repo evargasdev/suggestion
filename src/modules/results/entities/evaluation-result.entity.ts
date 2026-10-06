@@ -12,11 +12,11 @@ export class EvaluationResult extends Base {
   @Column({ name: 'classification', type: 'varchar', nullable: false })
   classification: string;
 
-  @ManyToOne(() => Dimension, (dimension) => dimension.label)
-  @JoinColumn({ name: 'dimension' })
+  @ManyToOne(() => Dimension, (dimension) => dimension.evaluationResults)
+  @JoinColumn({ name: 'dimension_id' })
   dimension: Dimension;
 
-  @ManyToOne(() => Evaluation, (evaluation) => evaluation.id)
-  @JoinColumn({ name: 'evaluation' })
+  @ManyToOne(() => Evaluation, (evaluation) => evaluation.evaluationResults)
+  @JoinColumn({ name: 'evaluation_id' })
   evaluation: Evaluation;
 }

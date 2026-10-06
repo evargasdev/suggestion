@@ -11,11 +11,14 @@ export class Answer extends Base {
   @Column({ name: 'value', type: 'int', nullable: false })
   value: number;
 
+  @Column({ name: 'sort_order', type: 'int', nullable: false, default: 0 })
+  sortOrder: number;
+
   // Configuración correcta del ManyToOne
-  @ManyToOne(() => AnswerProfile, (answerProfile) => answerProfile.label)
-  @JoinColumn({ name: 'answer_profile_id' }) // Opcional: para darle un nombre limpio a la columna en la BD
+  @ManyToOne(() => AnswerProfile, (answerProfile) => answerProfile.answers)
+  @JoinColumn({ name: 'answer_profile_id' })
   answerProfile: AnswerProfile;
 
-  @OneToMany(() => QuestionAnswer, (question_answer) => question_answer.answer)
-  question_answers: QuestionAnswer[];
+  @OneToMany(() => QuestionAnswer, (questionAnswer) => questionAnswer.answer)
+  questionAnswers: QuestionAnswer[];
 }
